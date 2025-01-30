@@ -5,7 +5,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f; 
     public float gravity = 9.81f; 
     public float jumpHeight = 2f; 
-    public Transform cameraTransform; 
+    public Transform cameraTransform;
+    public bool canMove = true; 
+
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -33,6 +35,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
+        
+            if (!canMove) return; 
+
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+            Vector3 movement = new Vector3(horizontal, 0, vertical);
+            transform.Translate(movement * speed * Time.deltaTime);
+        
+
         isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
         {
