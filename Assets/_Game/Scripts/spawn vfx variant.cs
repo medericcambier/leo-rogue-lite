@@ -38,15 +38,18 @@ public class SpawnVFXVariant : MonoBehaviour
            
             Vector3 direction = (targetPoint - spawnPoint.position).normalized;
 
-           
-            Quaternion vfxRotation = Quaternion.LookRotation(direction);
 
-            
+            Quaternion vfxRotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, -90, 0);
+
+
             GameObject vfxInstance = Instantiate(vfxPrefab, spawnPoint.position, vfxRotation);
 
             yield return new WaitForSeconds(vfxDuration);
 
             playerMovement.canMove = true;
+
+            // Détruit le VFX après la durée définie
+            Destroy(vfxInstance, 0.5f);
         }
         else
         {

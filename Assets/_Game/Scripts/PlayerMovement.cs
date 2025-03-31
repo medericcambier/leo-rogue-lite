@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f; 
+    public float speed = 30f; 
     public float gravity = 9.81f; 
     public float jumpHeight = 2f; 
     public Transform cameraTransform;
@@ -34,16 +34,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        
-        
-            if (!canMove) return; 
 
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
 
-            Vector3 movement = new Vector3(horizontal, 0, vertical);
-            transform.Translate(movement * speed * Time.deltaTime);
-        
+        if (!canMove) return;
+
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 movement = new Vector3(horizontal, 0, vertical);
+        transform.Translate(movement * speed * Time.deltaTime);
+
 
         isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
@@ -51,14 +51,14 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        
+
         float moveX = 0f;
         float moveZ = 0f;
 
-        if (Input.GetKey(KeyCode.W)) moveZ = 1f;
-        if (Input.GetKey(KeyCode.S)) moveZ = -1f;
-        if (Input.GetKey(KeyCode.A)) moveX = -1f;
-        if (Input.GetKey(KeyCode.D)) moveX = 1f;
+        if (Input.GetKey(KeyCode.W)) { moveZ = 1f; moveX = 1f; };
+        if (Input.GetKey(KeyCode.S)) { moveZ = -1f; moveX = -1f; };
+        if (Input.GetKey(KeyCode.A)) { moveX = -1f; moveZ = 1f; };
+        if (Input.GetKey(KeyCode.D)) { moveX = 1f; moveZ = -1f; };
 
        
         Vector3 move = new Vector3(moveX, 0, moveZ).normalized;
