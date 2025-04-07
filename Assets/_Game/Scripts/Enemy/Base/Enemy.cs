@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 {
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
 
+    [field: SerializeField] public float RotationSpeed { get; set; } = 5f; // Vitesse de rotation de l'ennemi
+
     [field: SerializeField] public ColliderBounds MovementBounds { get; private set; }
     public float CurrentHealth { get; set; }
     public Rigidbody Rigidbody { get; set; }
@@ -84,6 +86,15 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public void MoveEnemy(Vector3 direction)
     {
+        // Calcule la direction vers laquelle l'ennemi doit se tourner (en ignorant la composante verticale)
+        direction.y = 0; // Évite la rotation autour de l'axe vertical
+
+        // Crée la rotation cible vers la direction du mouvement
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        // Applique une rotation fluide vers la direction cible
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
+
         Rigidbody.MovePosition(Rigidbody.position + direction * Time.deltaTime);
     }
 

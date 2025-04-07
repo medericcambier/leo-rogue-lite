@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class EnemyChaseState : EnemyState
 {
+    private Transform _playerTransform;
+    private float _movementSpeed = 3f;
+
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -29,7 +33,17 @@ public class EnemyChaseState : EnemyState
     {
         base.FrameUpdate();
 
-        enemy.MoveEnemy(Vector2.zero);
+        Vector3 moveDirection = (_playerTransform.position - enemy.transform.position).normalized;
+
+        moveDirection.y = 0;
+
+        enemy.MoveEnemy(moveDirection * _movementSpeed);
+
+        if (enemy.IsWithinStrikingDistance)
+        {
+            enemy.StateMachine.ChangeState(enemy.AttackState);
+        }
+
     }
 
     public override void PhysicsUpdate()
