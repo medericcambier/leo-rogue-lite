@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
+public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
+
+    [field: SerializeField] public ColliderBounds MovementBounds { get; private set; }
     public float CurrentHealth { get; set; }
     public Rigidbody Rigidbody { get; set; }
 
@@ -17,6 +19,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
     public EnemyChaseState ChaseState { get; set; }
 
     public EnemyAttackState AttackState { get; set; }
+    public bool IsAggroed { get; set ; }
+    public bool IsWithinStrikingDistance { get; set; }
 
     #endregion
 
@@ -76,16 +80,28 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable
 
     #endregion
 
-
     #region Movement Functions
 
-    public void MoveEnemy(Vector3 velocity)
+    public void MoveEnemy(Vector3 direction)
     {
-        Rigidbody.velocity = velocity;
+        Rigidbody.MovePosition(Rigidbody.position + direction * Time.deltaTime);
     }
 
     #endregion
 
+    #region Distance Check
+
+    public void SetAggroStatus(bool isAggroed)
+    {
+        IsAggroed = isAggroed;
+    }
+
+    public void SetStrikingDistanceBool(bool isWithinStrikingDistance)
+    {
+        IsWithinStrikingDistance = isWithinStrikingDistance;
+    }
+
+    #endregion
 
     #region Animation Trigger
 

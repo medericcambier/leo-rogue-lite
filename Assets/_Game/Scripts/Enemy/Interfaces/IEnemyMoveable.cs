@@ -6,7 +6,7 @@ public interface IEnemyMoveable
 {
     Rigidbody Rigidbody { get; set; }
 
-    void MoveEnemy(Vector3 velocity);
+    void MoveEnemy(Vector3 direction);
 
 
 }
