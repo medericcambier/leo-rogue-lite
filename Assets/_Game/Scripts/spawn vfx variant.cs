@@ -44,6 +44,7 @@ public class SpawnVFXVariant : MonoBehaviour
 
             GameObject vfxInstance = Instantiate(vfxPrefab, spawnPoint.position, vfxRotation);
 
+
             yield return new WaitForSeconds(vfxDuration);
 
             playerMovement.canMove = true;
@@ -56,4 +57,5 @@ public class SpawnVFXVariant : MonoBehaviour
             Debug.LogWarning("Assignez tous les éléments nécessaires dans l'Inspector !");
         }
     }
+
 }

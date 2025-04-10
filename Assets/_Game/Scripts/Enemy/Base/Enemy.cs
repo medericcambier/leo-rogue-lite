@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
 
-    [field: SerializeField] public float RotationSpeed { get; set; } = 5f; // Vitesse de rotation de l'ennemi
+    public float CurrentHealth { get; set; } = 5f;
+
+    public Image healthBar;
+
+    [field: SerializeField] public float RotationSpeed { get; protected set; }
 
     [field: SerializeField] public ColliderBounds MovementBounds { get; private set; }
-    public float CurrentHealth { get; set; }
+    
     public Rigidbody Rigidbody { get; set; }
 
     #region State Machine Variables
@@ -29,7 +34,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     #region Idle Variables
 
-    public float RandomMovementRange = 5f;
     public float RandomMovementSpeed = 1f;
 
     #endregion
@@ -40,12 +44,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
-        AttackState = new EnemyAttackState (this, StateMachine);   
+        AttackState = new EnemyAttackState (this, StateMachine);
+
+        CurrentHealth = MaxHealth;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        CurrentHealth = MaxHealth;
 
         Rigidbody = GetComponent<Rigidbody>();
 
@@ -67,7 +72,9 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public void Damage(float damageAmount)
     {
-        CurrentHealth = damageAmount;
+        CurrentHealth -= damageAmount;
+
+        healthBar.fillAmount = CurrentHealth / MaxHealth;
 
         if (CurrentHealth <= 0f)
         {
@@ -84,7 +91,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     #region Movement Functions
 
-    public void MoveEnemy(Vector3 direction)
+    public virtual void MoveEnemy(Vector3 direction)
     {
         // Calcule la direction vers laquelle l'ennemi doit se tourner (en ignorant la composante verticale)
         direction.y = 0; // Évite la rotation autour de l'axe vertical
