@@ -22,9 +22,6 @@ public class ColliderBounds : MonoBehaviour
         m_Max = m_Collider.bounds.max;
         //Output this data into the console
 
-
-
-    OutputData();
     }
 
     public Vector3 Min => m_Min;
@@ -32,10 +29,10 @@ public class ColliderBounds : MonoBehaviour
 
     public void OutputData()
     {
-        //Output to the console the center and size of the Collider volume
         Debug.Log("Collider Center : " + m_Center);
         Debug.Log("Collider Size : " + m_Size);
         Debug.Log("Collider bound Minimum : " + m_Min);
         Debug.Log("Collider bound Maximum : " + m_Max);
     }
+
 }

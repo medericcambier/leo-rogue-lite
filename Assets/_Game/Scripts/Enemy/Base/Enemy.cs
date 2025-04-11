@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     #region Idle Variables
 
-    public float RandomMovementSpeed = 1f;
+    public float RandomMovementSpeed = 5f;
 
     #endregion
 

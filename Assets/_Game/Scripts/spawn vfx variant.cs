@@ -9,6 +9,9 @@ public class SpawnVFXVariant : MonoBehaviour
     public float vfxDuration = 8f;
     public Camera mainCamera;
 
+    public Animator animator;
+    public string attackTrigger = "SlashTrigger";
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) 
@@ -37,13 +40,32 @@ public class SpawnVFXVariant : MonoBehaviour
 
            
             Vector3 direction = (targetPoint - spawnPoint.position).normalized;
-
-
             Quaternion vfxRotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, -90, 0);
+
 
 
             GameObject vfxInstance = Instantiate(vfxPrefab, spawnPoint.position, vfxRotation);
 
+
+            // Vérifie si l'objet instancié a bien un Animator
+            Animator vfxAnimator = vfxInstance.GetComponent<Animator>();
+            if (vfxAnimator != null)
+            {
+                // Vérifie si l'Animator a bien un Controller assigné
+                if (vfxAnimator.runtimeAnimatorController != null)
+                {
+                    // Déclenche l'animation du slash
+                    vfxAnimator.SetTrigger("SlashAttack");
+                }
+                else
+                {
+                    Debug.LogError("L'Animator n'a pas de RuntimeAnimatorController !");
+                }
+            }
+            else
+            {
+                Debug.LogError("Le prefab instancié ne possède pas d'Animator !");
+            }
 
             yield return new WaitForSeconds(vfxDuration);
 

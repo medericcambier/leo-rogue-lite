@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7423662883672724793}
   - component: {fileID: 882638133676162155}
   - component: {fileID: 6612627281620223593}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DebrisFlying
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4841,7 +4841,7 @@ GameObject:
   - component: {fileID: 1117160115164803308}
   - component: {fileID: 7825762177030692715}
   - component: {fileID: 131946619025694345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9671,7 +9671,7 @@ GameObject:
   - component: {fileID: 7853082274165376116}
   - component: {fileID: 8077661254626856259}
   - component: {fileID: 6407283455739106777}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Impacts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14501,7 +14501,7 @@ GameObject:
   - component: {fileID: 9000793797195750120}
   - component: {fileID: 1872679931107184678}
   - component: {fileID: 5283850591874899657}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19389,7 +19389,7 @@ GameObject:
   - component: {fileID: 2066404113080560758}
   - component: {fileID: 5319830949745866443}
   - component: {fileID: 1550157717699745774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundTrailDark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24219,7 +24219,7 @@ GameObject:
   - component: {fileID: 1959307525369233136}
   - component: {fileID: 1011405119053908785}
   - component: {fileID: 798382340168874337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundMarks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29049,7 +29049,7 @@ GameObject:
   - component: {fileID: 8329072594899533772}
   - component: {fileID: 4943235251994325269}
   - component: {fileID: 8807066705550906138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33879,7 +33879,7 @@ GameObject:
   - component: {fileID: 8060811613307760533}
   - component: {fileID: 3833084139547801140}
   - component: {fileID: 7077843716839290697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ImpactsAB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38709,7 +38709,7 @@ GameObject:
   - component: {fileID: 3412662984285924060}
   - component: {fileID: 2832423760733195686}
   - component: {fileID: 5375794012225973734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundTrailBright
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43539,7 +43539,10 @@ GameObject:
   - component: {fileID: 1634197532508742686}
   - component: {fileID: 8187924523394973029}
   - component: {fileID: 5408546337693451609}
-  m_Layer: 0
+  - component: {fileID: 2484286919262644194}
+  - component: {fileID: 5711541700507686575}
+  - component: {fileID: 4074377193528160818}
+  m_Layer: 7
   m_Name: classique red attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48475,3 +48478,61 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!135 &2484286919262644194
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8327825968244677802}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &5711541700507686575
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8327825968244677802}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b83be29aa9c0c6347bf52cb434b9b319, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4074377193528160818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8327825968244677802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d464195de38119d46bd12f779569b891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 64
