@@ -8,23 +8,19 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
 
     public float CurrentHealth { get; set; } = 5f;
-
     public Image healthBar;
 
     [field: SerializeField] public float RotationSpeed { get; protected set; }
-
     [field: SerializeField] public ColliderBounds MovementBounds { get; private set; }
-    
     public Rigidbody Rigidbody { get; set; }
+    public Animator Animator { get; private set; }
+
 
     #region State Machine Variables
 
     public EnemyStateMachine StateMachine { get; set; }
-
     public EnemyIdleState IdleState { get; set; }
-
     public EnemyChaseState ChaseState { get; set; }
-
     public EnemyAttackState AttackState { get; set; }
     public bool IsAggroed { get; set ; }
     public bool IsWithinStrikingDistance { get; set; }
@@ -47,6 +43,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         AttackState = new EnemyAttackState (this, StateMachine);
 
         CurrentHealth = MaxHealth;
+
+        Animator = GetComponentInChildren<Animator>();
     }
 
     protected virtual void Start()
@@ -84,7 +82,9 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     public void Die()
     {
-        Destroy(gameObject);
+        Animator.SetBool("IsWalking", false);
+        Animator.SetBool("IsDead", true);
+        Destroy(gameObject, 1f);
     }
 
     #endregion
@@ -103,6 +103,8 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * RotationSpeed);
 
         Rigidbody.MovePosition(Rigidbody.position + direction * Time.deltaTime);
+
+        Animator.SetBool("IsWalking", true);
     }
 
     #endregion

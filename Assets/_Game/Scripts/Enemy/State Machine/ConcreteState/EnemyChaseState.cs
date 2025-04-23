@@ -33,11 +33,7 @@ public class EnemyChaseState : EnemyState
     {
         base.FrameUpdate();
 
-        Vector3 moveDirection = (_playerTransform.position - enemy.transform.position).normalized;
 
-        moveDirection.y = 0;
-
-        enemy.MoveEnemy(moveDirection * _movementSpeed);
 
         if (enemy.IsWithinStrikingDistance)
         {
@@ -49,5 +45,11 @@ public class EnemyChaseState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        Vector3 moveDirection = (_playerTransform.position - enemy.transform.position).normalized;
+
+        moveDirection.y = 0;
+
+        enemy.MoveEnemy(moveDirection * _movementSpeed);
     }
 }

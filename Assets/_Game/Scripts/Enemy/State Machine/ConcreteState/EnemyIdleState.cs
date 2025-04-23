@@ -37,9 +37,7 @@ public class EnemyIdleState : EnemyState
             enemy.StateMachine.ChangeState(enemy.ChaseState);
         }
 
-        _direction = (_targetPos - enemy.transform.position).normalized;
 
-        enemy.MoveEnemy(_direction * enemy.RandomMovementSpeed);
 
         if ((enemy.transform.position -  _targetPos).sqrMagnitude < 0.01f)
         {
@@ -50,6 +48,10 @@ public class EnemyIdleState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        _direction = (_targetPos - enemy.transform.position).normalized;
+
+        enemy.MoveEnemy(_direction * enemy.RandomMovementSpeed);
     }
 
 

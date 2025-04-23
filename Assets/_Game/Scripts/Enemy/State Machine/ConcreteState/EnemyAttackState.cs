@@ -28,9 +28,12 @@ public class EnemyAttackState : EnemyState
     {
         base.FrameUpdate();
 
+        enemy.Animator.SetBool("IsWalking", false);
+
         // Vérifie si le joueur est sorti de la portée de frappe
         if (!enemy.IsWithinStrikingDistance)
         {
+            
             // Si le joueur est sorti de la portée, on revient en ChaseState
             enemy.StateMachine.ChangeState(enemy.ChaseState);
             return; // On quitte la méthode pour éviter d'exécuter le reste
