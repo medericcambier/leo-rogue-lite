@@ -51,7 +51,7 @@ public class PlayerDash : MonoBehaviour
 
         while (Time.time < startTime + dashDuration)
         {
-            controller.Move(direction * dashSpeed * Time.deltaTime);
+           // controller.Move(direction * dashSpeed * Time.deltaTime);
             yield return null;
         }
 

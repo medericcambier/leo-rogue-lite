@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 30f; 
+    public float speed = 100f; 
     public float gravity = 9.81f; 
     public float jumpHeight = 2f; 
     public Transform cameraTransform;
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(movement * speed * Time.deltaTime);
 
 
-        isGrounded = controller.isGrounded;
+       // isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
        
         Vector3 move = new Vector3(moveX, 0, moveZ).normalized;
-        controller.Move(move * speed * Time.deltaTime);
+        //controller.Move(move * speed * Time.deltaTime);
 
         
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+       // controller.Move(velocity * Time.deltaTime);
 
         
         if (cameraTransform != null)
