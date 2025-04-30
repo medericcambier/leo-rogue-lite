@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Goblin
   - Enemy
+  - TeleportTrigger
   layers:
   - Default
   - TransparentFX
