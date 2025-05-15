@@ -1155,10 +1155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed70b6b39e62f434f87fa01e5932626a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPrefab: {fileID: 8327825968244677802, guid: 02e5d28724e3f16479e47861ef925d29, type: 3}
+  vfxPrefab: {fileID: 4364861999203606394, guid: 46d2156800973de47ab4e709fdbc2c5f, type: 3}
   distanceInFront: 1
   vfxLifetime: 3
-  sideAngleY: -90
+  vfxSpeed: 4
+  sideAngleY: 360
 --- !u!4 &647002095 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8257308592743101376, guid: ed7e10cc5f4f11548b738a6ca7edccf7, type: 3}
