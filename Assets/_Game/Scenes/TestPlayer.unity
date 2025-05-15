@@ -271,12 +271,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0422394a528d7fb488496a396c12ec65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 7
   mouseSensitivity: 900
   cameraPivot: {fileID: 1605831279}
   acceleration: 10
   gravity: -9.81
-  jumpHeight: 3
 --- !u!54 &456490065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -431,7 +430,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.10002434, y: 170.78636, z: 2.8134537}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.678086, y: 1, z: 3.5995}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     // Gravité et Saut
     public float gravity = -9.81f;
-    public float jumpHeight = 3f;
     private bool isGrounded;
 
     private Animator animator;
@@ -59,20 +58,13 @@ public class PlayerController : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        float strafeFactor = 0.5f; // ← réduis à 50% par exemple
+        float strafeFactor = 0.9f; // ← réduis à 50% par exemple
         Vector3 move = transform.right * h * strafeFactor + transform.forward * v;
 
         currentVelocity = Vector3.Lerp(currentVelocity, move * moveSpeed, acceleration * Time.deltaTime);
 
         // Applique le mouvement avec le Rigidbody
         rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z); // Garder la vitesse verticale intacte
-
-        // Saut (si le joueur est au sol)
-        if (isGrounded && Input.GetButtonDown("Jump"))
-        {
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse); // Applique une impulsion pour le saut
-        }
-
 
 
         Vector3 localVel = transform.InverseTransformDirection(rb.velocity);
