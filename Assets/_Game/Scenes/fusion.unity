@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 68615544}
   - component: {fileID: 68615543}
   - component: {fileID: 68615547}
+  - component: {fileID: 68615548}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -452,6 +453,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportTarget: {fileID: 37805582}
+--- !u!114 &68615548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68615542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4e38576ab1e214f84b5d2b91c9550b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxPrefab: {fileID: 4364861999203606394, guid: 46d2156800973de47ab4e709fdbc2c5f, type: 3}
+  spawnDistance: 2
+  vfxLifetime: 2
+  vfxDelay: 0
+  animator: {fileID: 1025818979}
+  triggerName: attacktest
+  movementScript: {fileID: 68615545}
 --- !u!1001 &165683427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1542,7 +1562,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 9bd0b503877ad2e4fb980e79ef21b2ad, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: a366567a2b567c94fb8cb8c70d5d37ad, type: 2}
+      objectReference: {fileID: 9100000, guid: cb2b9339118bc4a448b3a83eb70a42e0, type: 2}
     - target: {fileID: 5866666021909216657, guid: 9bd0b503877ad2e4fb980e79ef21b2ad, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -2026,6 +2046,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1025818979 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9bd0b503877ad2e4fb980e79ef21b2ad, type: 3}
+  m_PrefabInstance: {fileID: 754519574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1032608666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3608954588099219285, guid: b086944d1e7e4ce478c7e47b183ca722, type: 3}
