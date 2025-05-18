@@ -136,4 +136,28 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     }
 
     #endregion
+
+    public void ApplyBurnEffect()
+    {
+        Debug.Log("L'ennemi est en feu !");
+        // Appliquer dégâts sur la durée ici
+    }
+
+    public void ApplyFreezeEffect()
+    {
+        Debug.Log("L'ennemi est gelé !");
+        // Ralentir ou figer l’ennemi ici
+    }
+
+    public void ChainLightningEffect()
+    {
+        Debug.Log("Éclair lancé sur les ennemis proches !");
+        // Propager des dégâts ici
+    }
+
+    public void TakeBaseDamage()
+    {
+        Debug.Log("Dégâts standards appliqués !");
+        // Diminuer la vie ici
+    }
 }

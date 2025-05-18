@@ -1,91 +1,143 @@
-﻿using UnityEngine;
+﻿using Unity.IO.LowLevel.Unsafe;
+using UnityEngine;
+using static SwordPickup;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Mouvement")]
     public float moveSpeed = 5f;
-    public float mouseSensitivity = 100f;
-    public Transform cameraPivot; // L'empty qui contient la caméra
-
-    private Rigidbody rb;
-    private float rotationY = 0f;
-    private Vector3 currentVelocity = Vector3.zero;
     public float acceleration = 10f;
+    public float mouseSensitivity = 100f;
 
-    // Gravité et Saut
+    [Header("Physique")]
     public float gravity = -9.81f;
-    private bool isGrounded;
+    public Transform cameraPivot;
 
-    private Animator animator;
-    private bool IsBlocking = false;
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public Animator animator;
+
+    private float rotationY = 0f;
+    public Vector3 currentVelocity;
+    public bool isGrounded;
+
+    [Header("Armes")]
+    public GameObject normalSwordPrefab;
+    public GameObject fireSwordPrefab;
+    public GameObject iceSwordPrefab;
+    public GameObject lightningSwordPrefab;
+    public SwordState currentSwordState;
+    public Transform swordHolder;
+    private GameObject currentSwordInstance;
 
 
+    [Header("Immunités de blocage")]
+    public bool fireDamageImmune = false;
+    public bool iceDamageImmune = false;
+
+
+    public PlayerStateMachine stateMachine { get; private set; }
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+        stateMachine = new PlayerStateMachine();
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true; // Empêche le Rigidbody de tourner (on gère la rotation manuellement)
-        Cursor.lockState = CursorLockMode.Locked; // Cache le curseur et le centre
-        animator = GetComponentInChildren<Animator>();
+        Cursor.lockState = CursorLockMode.Locked;
+        rb.freezeRotation = true;
+
+        stateMachine.Initialize(new IdleState(this, stateMachine));
     }
 
     void Update()
     {
-        // Rotation horizontale avec la souris
+        stateMachine.Update();
+    }
+
+    void FixedUpdate()
+    {
+        stateMachine.FixedUpdate();
+    }
+
+    public void RotateCamera()
+    {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         rotationY += mouseX;
         Quaternion targetRotation = Quaternion.Euler(0f, rotationY, 0f);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f); // rotation fluide
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+    }
 
-        // Vérification si le joueur est au sol
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f); // Utilise un Raycast pour détecter le sol
-
-        // Appliquer la gravité
+    public void ApplyGravity()
+    {
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1f);
         if (!isGrounded)
         {
-            rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration); // Applique la gravité
+            rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
         }
-        else
+        else if (rb.velocity.y < 0)
         {
-            // Réinitialise la vitesse verticale (si on est au sol)
-            if (rb.velocity.y < 0)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Réinitialiser la vitesse verticale
-            }
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         }
-
-        // Déplacement en avant/arrière/gauche/droite selon l'orientation du personnage
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
-        float strafeFactor = 0.9f; // ← réduis à 50% par exemple
-        Vector3 move = transform.right * h * strafeFactor + transform.forward * v;
-
-        currentVelocity = Vector3.Lerp(currentVelocity, move * moveSpeed, acceleration * Time.deltaTime);
-
-        // Applique le mouvement avec le Rigidbody
-        rb.velocity = new Vector3(currentVelocity.x, rb.velocity.y, currentVelocity.z); // Garder la vitesse verticale intacte
-
-
-        Vector3 localVel = transform.InverseTransformDirection(rb.velocity);
-        animator.SetFloat("ForwardSpeed", localVel.z);
-        animator.SetFloat("StrafeSpeed", localVel.x);
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            IsBlocking = true;
-            animator.SetBool("IsBlocking", IsBlocking);
-        }
-
-        if (Input.GetMouseButtonUp(1)) 
-        {
-            IsBlocking = false;
-            animator.SetBool("IsBlocking", IsBlocking);
-        }
-
-
     }
+
+    public void SetActiveSwordModel(SwordType type)
+    {
+        // Détruire l'ancienne épée dans la scène
+        if (currentSwordInstance != null)
+        {
+            Destroy(currentSwordInstance);
+        }
+
+        GameObject prefabToSpawn = null;
+
+        switch (type)
+        {
+            case SwordType.Normal:
+                prefabToSpawn = normalSwordPrefab;
+                break;
+            case SwordType.Fire:
+                prefabToSpawn = fireSwordPrefab;
+                break;
+            case SwordType.Ice:
+                prefabToSpawn = iceSwordPrefab;
+                break;
+            case SwordType.Lightning:
+                prefabToSpawn = lightningSwordPrefab;
+                break;
+        }
+
+        if (prefabToSpawn != null)
+        {
+            // Instancier l'épée dans la scène comme enfant de swordHolder
+            currentSwordInstance = Instantiate(prefabToSpawn, swordHolder);
+            currentSwordInstance.transform.localPosition = Vector3.zero;
+            currentSwordInstance.transform.localRotation = Quaternion.identity;
+            currentSwordInstance.transform.localScale = Vector3.one;
+        }
+    }
+
+    public void SpawnVFX(string effectName)
+    {
+        // Instancier le bon prefab VFX selon effectName
+    }
+
+    public void SetSwordState(SwordState newState)
+    {
+        if (currentSwordState != null)
+            currentSwordState.Exit();
+
+        currentSwordState = newState;
+
+        if (currentSwordState != null)
+            currentSwordState.Enter();
+    }
+
 }
+
 
 
 
