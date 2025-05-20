@@ -12,6 +12,11 @@ public class FireSwordState : SwordState
         player.SpawnVFX("FireAura");
     }
 
+    public override void EnableDamage()
+    {
+        // ta logique ici
+    }
+
     public override void ApplyElementEffect(Enemy enemy)
     {
         enemy.ApplyBurnEffect(); // dégâts dans le temps

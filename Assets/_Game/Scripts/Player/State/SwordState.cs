@@ -15,6 +15,8 @@ public abstract class SwordState : PlayerState
         ActivateSwordVisual();
     }
 
+    public virtual void EnableDamage() { }
+
     public override void Update()
     {
         player.RotateCamera();

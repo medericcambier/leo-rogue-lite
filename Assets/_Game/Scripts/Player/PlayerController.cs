@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        stateMachine.CurrentState?.HandleInput(); // Entrées utilisateur
+        stateMachine.CurrentState?.Update();
         stateMachine.Update();
     }
 
@@ -134,6 +136,29 @@ public class PlayerController : MonoBehaviour
 
         if (currentSwordState != null)
             currentSwordState.Enter();
+    }
+
+    public void HandleInput()
+    {
+        stateMachine.CurrentState?.HandleInput();
+    }
+
+    // Bloque les déplacements (par exemple dans AttackState)
+    public void BlockMovement()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
+    // Active la fenêtre de dégâts pour l'arme actuelle
+    public void EnableDamageForCurrentWeapon()
+    {
+        currentSwordState?.EnableDamage(); // À adapter selon ta logique
+    }
+
+    // Vérifie si l'animation d'attaque est terminée
+    public bool IsAttackAnimationFinished()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f;
     }
 
 }

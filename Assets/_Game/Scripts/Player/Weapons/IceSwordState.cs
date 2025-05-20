@@ -17,6 +17,11 @@ public class IceSwordState : SwordState
         enemy.ApplyFreezeEffect();
     }
 
+    public override void EnableDamage()
+    {
+        // ta logique ici
+    }
+
     public override void Enter()
     {
         base.Enter();

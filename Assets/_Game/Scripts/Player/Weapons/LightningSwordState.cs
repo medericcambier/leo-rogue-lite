@@ -16,5 +16,10 @@ public class LightningSwordState : SwordState
     {
         enemy.ChainLightningEffect(); // Attaque en chaîne
     }
+
+    public override void EnableDamage()
+    {
+        // ta logique ici
+    }
 }
 

@@ -15,5 +15,10 @@ public class NormalSwordState : SwordState
     {
         enemy.TakeBaseDamage();
     }
+
+    public override void EnableDamage()
+    {
+        // ta logique ici
+    }
 }
 

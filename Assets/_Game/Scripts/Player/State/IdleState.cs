@@ -17,7 +17,15 @@ public class IdleState : PlayerState
     {
         player.RotateCamera();
         player.ApplyGravity();
+    }
 
+    public override void FixedUpdate()
+    {
+        player.rb.velocity = new Vector3(0f, player.rb.velocity.y, 0f); // Pas de déplacement
+    }
+
+    public override void HandleInput()
+    {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
@@ -32,11 +40,12 @@ public class IdleState : PlayerState
             stateMachine.ChangeState(new BlockState(player, stateMachine));
             return;
         }
-    }
 
-    public override void FixedUpdate()
-    {
-        player.rb.velocity = new Vector3(0f, player.rb.velocity.y, 0f); // Pas de déplacement
+        if (Input.GetMouseButtonDown(0))
+        {
+            stateMachine.ChangeState(new AttackState(player, stateMachine));
+            return;
+        }
     }
 }
 
