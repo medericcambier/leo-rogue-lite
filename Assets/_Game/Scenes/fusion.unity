@@ -1407,6 +1407,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4338738772590877421, guid: 6527c8919d35cac4097e88ee5ac90cca, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4338738772590877421, guid: 6527c8919d35cac4097e88ee5ac90cca, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7006952804852170809, guid: 6527c8919d35cac4097e88ee5ac90cca, type: 3}
       propertyPath: m_Name
       value: Gobelin (1)
@@ -1564,10 +1572,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
-    - target: {fileID: 7099600209776891384, guid: f3370951db01c754c88a876b8b9cc909, type: 3}
-      propertyPath: m_ProvidesContacts
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1701,6 +1705,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2243123425167299972, guid: 502261fe9efef6b42a68024d2c4b5df3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f5de345d686c948b59e5095b558aa3, type: 2}
     - target: {fileID: 5876162694869026257, guid: 502261fe9efef6b42a68024d2c4b5df3, type: 3}
       propertyPath: m_Name
       value: IceCube
@@ -2705,7 +2713,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1 &1137854374 stripped
