@@ -19,8 +19,9 @@ public class AttackState : PlayerState
         canCombo = false;
         comboTimer = 0f;
         hasActivatedDamage = false;
+        SetAttackLayerWeight(1f);
 
-        player.BlockMovement(); // Empêche le mouvement pendant l’attaque
+        //player.BlockMovement(); // Empêche le mouvement pendant l’attaque
     }
 
     public override void HandleInput()
@@ -70,12 +71,18 @@ public class AttackState : PlayerState
         base.Exit();
         player.DisableSwordCollider(); // Sécurité pour désactiver les dégâts
         player.UnblockMovement();
+        SetAttackLayerWeight(0f);  // désactive layer attaque pour revenir au bas corps
     }
 
     private void PlayAttackAnimation(int index)
     {
         player.animator.SetTrigger("Attack" + index);
         comboTimer = 0f;
+    }
+
+    public void SetAttackLayerWeight(float weight)
+    {
+        player.animator.SetLayerWeight(1, weight);  // 1 = index du layer d’attaque
     }
 }
 

@@ -134,6 +134,16 @@ public class PlayerController : MonoBehaviour
 
         currentSwordState = newState;
 
+        // Récupérer le collider dans l'épée actuelle
+        if (currentSwordInstance != null)
+        {
+            Collider swordCollider = currentSwordInstance.GetComponentInChildren<Collider>();
+            if (swordCollider != null)
+            {
+                currentSwordState.SetHitCollider(swordCollider);
+            }
+        }
+
         if (currentSwordState != null)
             currentSwordState.Enter();
     }
@@ -191,8 +201,6 @@ public class PlayerController : MonoBehaviour
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         return stateInfo.IsName(animationName) && stateInfo.normalizedTime >= 1f;
     }
-
-
 }
 
 

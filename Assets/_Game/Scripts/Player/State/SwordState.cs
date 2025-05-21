@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class SwordState : PlayerState
 {
+    protected Collider hitCollider;
     public SwordState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
 
     public abstract void ApplyElementEffect(Enemy enemy); // À implémenter dans les sous-classes
@@ -24,6 +25,19 @@ public abstract class SwordState : PlayerState
     {
         // Sera surchargé par les états spécifiques d'épée
     }
+
+    public virtual void OnHitEnemy(Enemy enemy)
+    {
+        // Par défaut rien, les sous-classes peuvent override
+    }
+
+    public virtual void SetHitCollider(Collider collider)
+    {
+        hitCollider = collider;
+        if (hitCollider != null)
+            hitCollider.enabled = false; // par défaut désactivé
+    }
+
 
 
     public override void Update()

@@ -216,9 +216,9 @@ Transform:
   m_GameObject: {fileID: 52563376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1, y: 168.143, z: -0.17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 4.1, y: 168.143, z: -12.88}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 950083437}
   - {fileID: 1253895520}
@@ -344,10 +344,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
   isGrounded: 0
-  normalSwordPrefab: {fileID: 8947079371753237599, guid: 02ffcdcce496f7b429bc8890255da4a6, type: 3}
+  normalSwordPrefab: {fileID: 8947079371753237599, guid: 80b057e1cc878634488547feae408d42, type: 3}
   fireSwordPrefab: {fileID: 8947079371753237599, guid: 97d88fb9a3565d84daf5fff081fcbb91, type: 3}
   iceSwordPrefab: {fileID: 8947079371753237599, guid: 1dbf24f8a486a5d43aa8eef186e3375d, type: 3}
-  lightningSwordPrefab: {fileID: 8947079371753237599, guid: 80b057e1cc878634488547feae408d42, type: 3}
+  lightningSwordPrefab: {fileID: 8947079371753237599, guid: 02ffcdcce496f7b429bc8890255da4a6, type: 3}
   swordHolder: {fileID: 208982218}
   fireDamageImmune: 0
   iceDamageImmune: 0
@@ -360,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 282364709}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 170.87, z: 4.8880234}
+  m_LocalPosition: {x: 0.84, y: 168.25, z: 6.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1362,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 2032981336}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 170.8, z: 1.19}
+  m_LocalPosition: {x: 3.5, y: 170.8, z: -14.91}
   m_LocalScale: {x: 2.2297606, y: 1.2940792, z: 1.0301126}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -280,10 +280,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
   isGrounded: 0
-  normalSwordPrefab: {fileID: 8947079371753237599, guid: 02ffcdcce496f7b429bc8890255da4a6, type: 3}
+  normalSwordPrefab: {fileID: 8947079371753237599, guid: 80b057e1cc878634488547feae408d42, type: 3}
   fireSwordPrefab: {fileID: 8947079371753237599, guid: 97d88fb9a3565d84daf5fff081fcbb91, type: 3}
   iceSwordPrefab: {fileID: 8947079371753237599, guid: 1dbf24f8a486a5d43aa8eef186e3375d, type: 3}
-  lightningSwordPrefab: {fileID: 8947079371753237599, guid: 80b057e1cc878634488547feae408d42, type: 3}
+  lightningSwordPrefab: {fileID: 8947079371753237599, guid: 02ffcdcce496f7b429bc8890255da4a6, type: 3}
   swordHolder: {fileID: 289428921}
   fireDamageImmune: 0
   iceDamageImmune: 0

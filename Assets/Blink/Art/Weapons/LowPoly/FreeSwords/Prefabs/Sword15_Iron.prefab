@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479951797072518235}
   - component: {fileID: 7262469661163375200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
