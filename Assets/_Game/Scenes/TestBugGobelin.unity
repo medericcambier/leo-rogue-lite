@@ -261,11 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebc7da05010f0744a8121502997d9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPrefab2: {fileID: 3232433312989554653, guid: afc69b197e0625b4c822fa9bdd4fc8d9, type: 3}
-  spawnPoint: {fileID: 1361226722}
-  playerMovement: {fileID: 780878483}
-  vfxDuration: 0.5
-  mainCamera: {fileID: 0}
 --- !u!114 &780878480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,13 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6b72ab83924104b959b9db319fbafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPrefab: {fileID: 8327825968244677802, guid: 02e5d28724e3f16479e47861ef925d29, type: 3}
-  spawnPoint: {fileID: 2089902112}
-  playerMovement: {fileID: 780878483}
-  vfxDuration: 1
-  mainCamera: {fileID: 2025744787}
-  animator: {fileID: 5711541700507686575, guid: 02e5d28724e3f16479e47861ef925d29, type: 3}
-  attackTrigger: SlashTrigger
 --- !u!114 &780878481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,10 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ee5fdbcd40bbc4f8b1d1aab9faa7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPrefab: {fileID: 8650602602809953539, guid: 1b28ab180b98e8d40a8f2a8b408ca198, type: 3}
-  spawnPoint: {fileID: 1169794062}
-  playerMovement: {fileID: 780878483}
-  vfxDuration: 1
 --- !u!143 &780878482
 CharacterController:
   m_ObjectHideFlags: 0
@@ -339,11 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd66a9bf528dab49a286e11652ca86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  gravity: 9.81
-  jumpHeight: 2
-  cameraTransform: {fileID: 2025744788}
-  canMove: 1
 --- !u!136 &780878484
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -426,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 780878478}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.73, y: 170.76, z: -17.37}
+  m_LocalPosition: {x: 23.73, y: 170.76, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
