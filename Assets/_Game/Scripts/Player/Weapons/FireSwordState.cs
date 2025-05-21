@@ -6,6 +6,7 @@ public class FireSwordState : SwordState
 {
     public FireSwordState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
 
+    private Collider hitCollider;
     public override void ActivateSwordVisual()
     {
         player.SetActiveSwordModel(SwordPickup.SwordType.Fire);
@@ -14,7 +15,12 @@ public class FireSwordState : SwordState
 
     public override void EnableDamage()
     {
-        // ta logique ici
+        hitCollider.enabled = true;
+    }
+
+    public override void DisableDamage()
+    {
+        hitCollider.enabled = false;
     }
 
     public override void ApplyElementEffect(Enemy enemy)

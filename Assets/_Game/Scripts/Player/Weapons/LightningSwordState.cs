@@ -6,6 +6,7 @@ public class LightningSwordState : SwordState
 {
     public LightningSwordState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
 
+    private Collider hitCollider;
     public override void ActivateSwordVisual()
     {
         player.SetActiveSwordModel(SwordPickup.SwordType.Lightning);
@@ -19,7 +20,12 @@ public class LightningSwordState : SwordState
 
     public override void EnableDamage()
     {
-        // ta logique ici
+        hitCollider.enabled = true;
+    }
+
+    public override void DisableDamage()
+    {
+        hitCollider.enabled = false;
     }
 }
 

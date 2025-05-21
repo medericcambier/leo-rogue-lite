@@ -161,6 +161,38 @@ public class PlayerController : MonoBehaviour
         return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f;
     }
 
+    // Débloque les déplacements après une attaque
+    public void UnblockMovement()
+    {
+        // Ne rien faire ici si tu n'as pas de système de blocage automatique
+        // ou tu peux gérer un flag comme playerCanMove = true;
+    }
+
+    // Désactive la hitbox de l'arme
+    public void DisableSwordCollider()
+    {
+        currentSwordState?.DisableDamage(); // À implémenter dans chaque SwordState
+    }
+
+    // Retourne la progression de l’animation en cours
+    public float GetCurrentAnimationTime(string animationName)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName(animationName))
+        {
+            return stateInfo.normalizedTime;
+        }
+        return 0f;
+    }
+
+    // Vérifie la fin d'une animation spécifique
+    public bool IsAttackAnimationFinished(string animationName)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        return stateInfo.IsName(animationName) && stateInfo.normalizedTime >= 1f;
+    }
+
+
 }
 
 
