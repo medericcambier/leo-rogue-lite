@@ -6,6 +6,7 @@ public class NormalSwordState : SwordState
 {
     public NormalSwordState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
 
+    private Collider hitCollider;
     public override void ActivateSwordVisual()
     {
         player.SetActiveSwordModel(SwordPickup.SwordType.Normal);
@@ -18,7 +19,12 @@ public class NormalSwordState : SwordState
 
     public override void EnableDamage()
     {
-        // ta logique ici
+        hitCollider.enabled = true;
+    }
+
+    public override void DisableDamage()
+    {
+        hitCollider.enabled = false;
     }
 }
 

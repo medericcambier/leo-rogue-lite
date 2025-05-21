@@ -15,7 +15,16 @@ public abstract class SwordState : PlayerState
         ActivateSwordVisual();
     }
 
-    public virtual void EnableDamage() { }
+    public virtual void EnableDamage()
+    {
+        // Sera surchargé par les états spécifiques d'épée
+    }
+
+    public virtual void DisableDamage()
+    {
+        // Sera surchargé par les états spécifiques d'épée
+    }
+
 
     public override void Update()
     {

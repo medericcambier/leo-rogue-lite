@@ -6,6 +6,8 @@ public class IceSwordState : SwordState
 {
     public IceSwordState(PlayerController player, PlayerStateMachine stateMachine) : base(player, stateMachine) { }
 
+    private Collider hitCollider;
+
     public override void ActivateSwordVisual()
     {
         player.SetActiveSwordModel(SwordPickup.SwordType.Ice);
@@ -19,7 +21,12 @@ public class IceSwordState : SwordState
 
     public override void EnableDamage()
     {
-        // ta logique ici
+        hitCollider.enabled = true;
+    }
+
+    public override void DisableDamage()
+    {
+        hitCollider.enabled = false;
     }
 
     public override void Enter()
